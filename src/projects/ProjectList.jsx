@@ -20,6 +20,7 @@ function ProjectList ({ projects, onSave}) {
         
         {project === projectBeingEdited ? (
             <ProjectForm
+              project={project}
               onSave={onSave} 
               onCancel = {cancelEditing}
              />

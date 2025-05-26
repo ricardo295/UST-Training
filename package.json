@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "serve -s",
-    "api": "json-server ./api/db.json",
+    "api": "json-server api/db.json --port 4000",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

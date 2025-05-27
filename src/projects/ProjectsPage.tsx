@@ -1,7 +1,7 @@
-import { Project } from "./Project";
 import ProjectList from './ProjectList';
 import { useState, useEffect } from 'react';
 import { projectAPI } from './projectAPI';
+import { Project } from "./Project";
 
 
 function ProjetsPage(){
@@ -53,11 +53,18 @@ function ProjetsPage(){
 
 
   const saveProject = (project) => {
-    let updatedProjects = projects.map((p) => {
-      return p.id === project.id ? project : p;
-    });
-    setProjects(updatedProjects);
-  }
+   projectAPI
+     .put(project)
+     .then((updatedProject) => {
+       let updatedProjects = projects.map((p) => {
+         return p.id === project.id ? new Project(updatedProject) : p;
+       });
+       setProjects(updatedProjects);
+     })
+     .catch((e) => {
+       setError(e.message);
+     });
+  };
   return (
    <>
      <h1>Projects</h1>
